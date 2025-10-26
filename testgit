@@ -1,0 +1,40 @@
+这是一个非常好的问题，它触及了 Spring IoC 容器启动的核心机制。
+
+答案是：**不完全是。**
+
+这个解析和加载的动作**不是**在 `ConfigurationClassPostProcessor` 对象**创建时**（即调用它的构造函数时）执行的，而是在它被创建**之后**，由 Spring 容器在特定的生命周期阶段回调它的 `postProcessBeanDefinitionRegistry` 方法时执行的。
+
+这是一个关于**时机**的关键区别。
+
+### `ConfigurationClassPostProcessor` 的工作流程
+
+`ConfigurationClassPostProcessor` 是一个极其重要的类，它实现了 `BeanDefinitionRegistryPostProcessor` 接口。这个接口意味着它有能力在 Spring 容器的生命周期中**非常早**的阶段介入，甚至可以**添加新**的 `BeanDefinition` 到注册表中。
+
+以下是详细的步骤：
+
+1.  **容器启动与初始注册 (Container Startup & Initial Registration)**
+    * 当你创建一个 `ApplicationContext`（例如 `AnnotationConfigApplicationContext`）时，Spring 会做一些初始化的工作。
+    * 它会**内部注册**几个核心的 `BeanFactoryPostProcessor`，其中就包括 `ConfigurationClassPostProcessor` 的 `BeanDefinition`。
+
+2.  **实例化 `ConfigurationClassPostProcessor` (Instantiation)**
+    * 因为 `ConfigurationClassPostProcessor` 本身是一个 `BeanDefinitionRegistryPostProcessor`（这是 `BeanFactoryPostProcessor` 的一个特殊子接口），Spring 需要**立即创建它的实例**，以便能调用它的方法。
+    * 此时，`ConfigurationClassPostProcessor` 对象的**构造函数**被调用。**在这个时间点，它还没有开始解析任何你定义的配置类。**
+
+3.  **执行回调方法 (Callback Execution) - [核心]**
+    * 在 `ConfigurationClassPostProcessor` 实例创建**之后**，Spring 容器会立即调用它的 `postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry)` 方法。
+    * **这才是真正开始工作的地方！**
+
+4.  **解析与注册 (Parsing & Registration)**
+    * 在 `postProcessBeanDefinitionRegistry` 方法内部，`ConfigurationClassPostProcessor` 会开始执行它的核心逻辑：
+    * **a. 查找配置类：** 它会找到所有已经注册的、被 `@Configuration` 注解标记的 `BeanDefinition`（以及其他带有 `@Component`, `@ComponentScan`, `@Import` 等注解的类）。
+    * **b. 解析注解：** 它使用一个 `ConfigurationClassParser`（配置类解析器）来深入解析这些类。
+    * **c. 处理 `@PropertySource`：** 这就是你提到的“加载 resource 资源的注解”。解析器遇到 `@PropertySource` 时，会**立即加载**指定的 `.properties` 或 `.yml` 文件，并将内容填充到 Spring 的 `Environment`（环境）中。这个动作**不会**创建 `BeanDefinition`，但它会使配置文件中的属性可用（例如用于 `@Value` 注入）。
+    * **d. 处理 `@ComponentScan`：** 解析器遇到 `@ComponentScan` 时，会**扫描**指定的包路径，找到所有符合条件的类（如 `@Component`, `@Service` 等），并为它们**创建新的 `BeanDefinition`** 注册到 `BeanDefinitionRegistry` 中。
+    * **e. 处理 `@Import`：** 解析器会递归处理 `@Import` 导入的类，并将它们也注册为 `BeanDefinition`。
+    * **f. 处理 `@Bean`：** 解析器会找到所有 `@Bean` 方法，并为每一个方法**创建对应的 `BeanDefinition`** 注册到 `BeanDefinitionRegistry` 中。
+
+### 总结
+
+所以，你的问题“对象创建时会执行解析吗？”
+* **创建时（Constructor）：** 不会。
+* **创建后（Method Call）：** 会。在对象创建完毕后，Spring 立即调用其 `postProcessBeanDefinitionRegistry` 方法，**在这个方法里**才开始执行对 `@Configuration`、`@PropertySource`、`@ComponentScan` 等注解的解析、加载资源以及注册新的 `BeanDefinition`。
