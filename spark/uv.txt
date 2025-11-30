@@ -1,0 +1,16 @@
+pip install uv -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+uv init ai-agent-test
+
+cd init ai-agent-test  
+uv add pyyaml
+
+
+uv  sync  的时候没反应  需要配置默认的镜像源
+Windows
+在当前的powershell环境输入
+$env:UV_DEFAULT_INDEX = "https://pypi.tuna.tsinghua.edu.cn/simple"
+
+或者自己配置环境变量
+UV_DEFAULT_INDEX = https://pypi.tuna.tsinghua.edu.cn/simple
