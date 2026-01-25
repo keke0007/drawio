@@ -1,0 +1,40 @@
+{
+  "monitoring": {
+    "cpu": {
+      "enabled": true,
+      "interval": 5,
+      "threshold": 80
+    },
+    "memory": {
+      "enabled": true,
+      "interval": 5,
+      "threshold": 85
+    },
+    "disk": {
+      "enabled": true,
+      "interval": 60,
+      "threshold": 90
+    },
+    "network": {
+      "enabled": true,
+      "interval": 10
+    }
+  },
+  "alerts": {
+    "email": {
+      "enabled": false,
+      "smtp_server": "smtp.example.com",
+      "smtp_port": 587,
+      "from": "monitor@example.com",
+      "to": ["admin@example.com"]
+    },
+    "log": {
+      "enabled": true,
+      "file": "output/alerts.log"
+    }
+  },
+  "output": {
+    "format": "json",
+    "file": "output/monitor_data.json"
+  }
+}

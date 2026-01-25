@@ -1,0 +1,11 @@
+id,name,department,salary,hire_date,email
+1,张三,技术部,8000,2020-01-15,zhangsan@example.com
+2,李四,销售部,6000,2019-03-20,lisi@example.com
+3,王五,技术部,9000,2021-06-10,wangwu@example.com
+4,赵六,人事部,5500,2020-11-05,zhaoliu@example.com
+5,钱七,销售部,6500,2019-08-12,qianqi@example.com
+6,孙八,技术部,8500,2020-02-28,sunba@example.com
+7,周九,财务部,7000,2021-01-10,zhoujiu@example.com
+8,吴十,销售部,6200,2020-05-18,wushi@example.com
+9,郑一,技术部,9500,2019-12-01,zhengyi@example.com
+10,王二,人事部,5800,2021-03-25,wanger@example.com

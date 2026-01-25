@@ -1,0 +1,18 @@
+2025-01-25 10:00:00 INFO [app.py:45] Application started
+2025-01-25 10:00:05 INFO [app.py:67] Database connection established
+2025-01-25 10:00:10 INFO [api.py:123] User login: user123
+2025-01-25 10:00:15 INFO [api.py:234] API request: GET /api/users
+2025-01-25 10:00:20 INFO [app.py:89] Cache initialized
+2025-01-25 10:00:25 WARNING [app.py:156] High CPU usage: 78%
+2025-01-25 10:00:30 INFO [api.py:345] API request: POST /api/orders
+2025-01-25 10:00:35 ERROR [db.py:123] Database query timeout
+2025-01-25 10:00:40 INFO [app.py:234] Task completed: process_order
+2025-01-25 10:00:45 INFO [api.py:456] User logout: user123
+2025-01-25 10:00:50 WARNING [cache.py:89] Cache eviction: 1000 items
+2025-01-25 10:00:55 INFO [app.py:345] Scheduled task started: cleanup
+2025-01-25 10:01:00 ERROR [api.py:567] Invalid request format
+2025-01-25 10:01:05 INFO [app.py:456] Background job completed: send_email
+2025-01-25 10:01:10 INFO [api.py:678] API request: GET /api/products
+2025-01-01 10:01:15 WARNING [app.py:567] Memory usage: 82%
+2025-01-25 10:01:20 INFO [db.py:234] Database connection pool: 5/10 active
+2025-01-25 10:01:25 INFO [app.py:789] Application health check: OK

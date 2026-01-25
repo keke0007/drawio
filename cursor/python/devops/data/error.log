@@ -1,0 +1,13 @@
+2025-01-25 10:00:00 ERROR [app.py:123] Database connection failed: Connection timeout
+2025-01-25 10:00:15 WARNING [app.py:456] High memory usage detected: 85%
+2025-01-25 10:00:30 ERROR [api.py:789] Failed to process request: Invalid input
+2025-01-25 10:00:45 CRITICAL [db.py:234] Database connection lost, attempting reconnect
+2025-01-25 10:01:00 ERROR [app.py:123] Database connection failed: Connection timeout
+2025-01-25 10:01:15 WARNING [cache.py:67] Cache miss rate high: 45%
+2025-01-25 10:01:30 ERROR [api.py:890] Authentication failed for user: admin
+2025-01-25 10:01:45 ERROR [app.py:567] File not found: /data/config.json
+2025-01-25 10:02:00 WARNING [app.py:234] Slow query detected: 3.5s
+2025-01-25 10:02:15 ERROR [api.py:123] Invalid API key provided
+2025-01-25 10:02:30 CRITICAL [app.py:789] Application crash: Segmentation fault
+2025-01-25 10:02:45 ERROR [db.py:456] Transaction rollback: Deadlock detected
+2025-01-25 10:03:00 WARNING [app.py:345] Disk space low: 15% remaining

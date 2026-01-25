@@ -1,0 +1,30 @@
+[
+  {
+    "dept_id": "D001",
+    "dept_name": "技术部",
+    "manager": "张三",
+    "budget": 500000,
+    "location": "北京"
+  },
+  {
+    "dept_id": "D002",
+    "dept_name": "销售部",
+    "manager": "李四",
+    "budget": 300000,
+    "location": "上海"
+  },
+  {
+    "dept_id": "D003",
+    "dept_name": "人事部",
+    "manager": "赵六",
+    "budget": 200000,
+    "location": "北京"
+  },
+  {
+    "dept_id": "D004",
+    "dept_name": "财务部",
+    "manager": "周九",
+    "budget": 250000,
+    "location": "上海"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "servers": [
+    {
+      "name": "web-server-1",
+      "host": "192.168.1.10",
+      "port": 22,
+      "user": "deploy",
+      "key_file": "~/.ssh/id_rsa",
+      "deploy_path": "/var/www/app"
+    },
+    {
+      "name": "web-server-2",
+      "host": "192.168.1.11",
+      "port": 22,
+      "user": "deploy",
+      "key_file": "~/.ssh/id_rsa",
+      "deploy_path": "/var/www/app"
+    }
+  ],
+  "deployment": {
+    "source": {
+      "type": "git",
+      "repository": "https://github.com/example/app.git",
+      "branch": "main"
+    },
+    "steps": [
+      "pull_code",
+      "install_dependencies",
+      "run_tests",
+      "build",
+      "deploy",
+      "restart_service",
+      "health_check"
+    ],
+    "rollback": {
+      "enabled": true,
+      "keep_versions": 5
+    }
+  },
+  "health_check": {
+    "url": "http://localhost:8080/health",
+    "timeout": 30,
+    "retries": 3
+  }
+}

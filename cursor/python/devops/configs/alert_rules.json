@@ -1,0 +1,44 @@
+{
+  "rules": [
+    {
+      "name": "high_cpu",
+      "metric": "cpu_percent",
+      "threshold": 80,
+      "duration": 300,
+      "severity": "warning",
+      "action": "log"
+    },
+    {
+      "name": "high_memory",
+      "metric": "memory_percent",
+      "threshold": 85,
+      "duration": 300,
+      "severity": "critical",
+      "action": "email"
+    },
+    {
+      "name": "disk_full",
+      "metric": "disk_percent",
+      "threshold": 90,
+      "duration": 60,
+      "severity": "critical",
+      "action": "email"
+    },
+    {
+      "name": "service_down",
+      "metric": "service_status",
+      "condition": "down",
+      "severity": "critical",
+      "action": "restart"
+    }
+  ],
+  "notification": {
+    "email": {
+      "enabled": true,
+      "smtp_server": "smtp.example.com",
+      "smtp_port": 587,
+      "from": "alerts@example.com",
+      "to": ["admin@example.com"]
+    }
+  }
+}

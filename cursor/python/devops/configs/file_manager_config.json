@@ -1,0 +1,37 @@
+{
+  "monitoring": {
+    "enabled": true,
+    "watch_dirs": [
+      "/var/www/uploads",
+      "/var/log/app"
+    ],
+    "patterns": ["*.log", "*.txt"],
+    "ignore_patterns": ["*.tmp", "*.bak"]
+  },
+  "backup": {
+    "enabled": true,
+    "source_dirs": [
+      "/var/www/app",
+      "/etc/nginx"
+    ],
+    "backup_dir": "/backup",
+    "schedule": "daily",
+    "retention_days": 30,
+    "compression": true
+  },
+  "sync": {
+    "enabled": false,
+    "source": "/var/www/app",
+    "destination": "/backup/sync",
+    "interval": 3600
+  },
+  "cleanup": {
+    "enabled": true,
+    "temp_dirs": [
+      "/tmp",
+      "/var/tmp"
+    ],
+    "max_age_days": 7,
+    "patterns": ["*.tmp", "*.log"]
+  }
+}

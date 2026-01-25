@@ -1,0 +1,5 @@
+2025-01-25 09:56:00 INFO [service2] Service started
+2025-01-25 09:56:05 INFO [service2] Processing request 1
+2025-01-25 09:56:10 ERROR [service2] Connection failed
+2025-01-25 09:56:15 INFO [service2] Retrying connection
+2025-01-25 09:56:20 INFO [service2] Connection restored

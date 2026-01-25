@@ -1,0 +1,17 @@
+2025-01-25 10:00:00 INFO [app] Application startup
+2025-01-25 10:00:05 INFO [db] Database connection established
+2025-01-25 10:00:10 INFO [api] User login: admin
+2025-01-25 10:00:15 ERROR [db] Query timeout: SELECT * FROM users
+2025-01-25 10:00:20 WARNING [cache] Cache miss: key=user:123
+2025-01-25 10:00:25 INFO [api] API request: GET /api/users
+2025-01-25 10:00:30 ERROR [api] Authentication failed: invalid token
+2025-01-25 10:00:35 INFO [app] Task scheduled: cleanup
+2025-01-25 10:00:40 WARNING [app] High memory usage: 85%
+2025-01-25 10:00:45 INFO [db] Transaction committed
+2025-01-25 10:00:50 ERROR [api] Invalid request: missing parameter
+2025-01-25 10:00:55 INFO [app] Background job completed
+2025-01-25 10:01:00 CRITICAL [app] System error: Out of memory
+2025-01-25 10:01:05 INFO [api] User logout: admin
+2025-01-25 10:01:10 WARNING [cache] Cache eviction: 1000 items
+2025-01-25 10:01:15 ERROR [db] Connection lost
+2025-01-25 10:01:20 INFO [app] Health check: OK

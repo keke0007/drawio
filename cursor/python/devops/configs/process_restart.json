@@ -1,0 +1,26 @@
+{
+  "processes": [
+    {
+      "name": "web_server",
+      "command": "/usr/bin/python /var/www/app/server.py",
+      "working_dir": "/var/www/app",
+      "max_restarts": 5,
+      "restart_interval": 300,
+      "health_check": {
+        "type": "http",
+        "url": "http://localhost:8080/health",
+        "timeout": 10
+      }
+    },
+    {
+      "name": "database",
+      "command": "/usr/bin/mysqld",
+      "max_restarts": 3,
+      "restart_interval": 600
+    }
+  ],
+  "monitoring": {
+    "check_interval": 30,
+    "log_file": "output/process_restart.log"
+  }
+}
